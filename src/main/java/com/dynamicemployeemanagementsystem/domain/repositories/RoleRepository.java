@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,6 +18,9 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
 
     @Query("SELECT r FROM Role r WHERE r.id = :id AND r.deleted = false")
     Optional<Role> find(@Param("id") Long id);
+
+    @Query("SELECT r from Role r WHERE r.id IN :ids AND r.deleted = false")
+    List<Role> findByIds(@Param("ids") List<Long> ids);
 
     @Query("SELECT COUNT(r) FROM Role r WHERE r.deleted = false")
     Long total();
