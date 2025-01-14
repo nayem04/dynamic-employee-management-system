@@ -14,6 +14,9 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Role extends BaseEntity {
+    @Column(name = "label", nullable = false, unique = true)
+    private String label;
+
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
