@@ -6,7 +6,7 @@ import com.dynamicemployeemanagementsystem.common.utilities.ExceptionUtil;
 
 public enum RoleEnum {
     ROLE_ADMIN(1, "Admin", "ROLE_ADMIN", "Role Admin"),
-    ROLE_USER(2, "Employee", "ROLE_EMPLOYEE", "Role Employee");
+    ROLE_EMPLOYEE(2, "Employee", "ROLE_EMPLOYEE", "Role Employee");
 
     private Integer value;
     private String label;
