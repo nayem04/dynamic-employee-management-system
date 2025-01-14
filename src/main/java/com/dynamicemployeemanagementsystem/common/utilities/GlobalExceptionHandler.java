@@ -1,6 +1,6 @@
 package com.dynamicemployeemanagementsystem.common.utilities;
 
-import com.dynamicemployeemanagementsystem.common.exceptions.NotFoundException;
+import com.dynamicemployeemanagementsystem.common.exceptions.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,8 +18,28 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<String> handleBookNotFoundException(NotFoundException notFoundException) {
+    public ResponseEntity<String> handleNotFoundException(NotFoundException notFoundException) {
         return new ResponseEntity<>(notFoundException.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EnumNotFoundException.class)
+    public ResponseEntity<String> handleEnumNotFoundException(EnumNotFoundException enumNotFoundException) {
+        return new ResponseEntity<>(enumNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<String> handleAlreadyExistException(AlreadyExistsException alreadyExistsException) {
+        return new ResponseEntity<>(alreadyExistsException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<String> handleUserAlreadyExistsException(UserAlreadyExistsException userAlreadyExistsException) {
+        return new ResponseEntity<>(userAlreadyExistsException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NullPasswordException.class)
+    public ResponseEntity<String> handleNullPasswordException(NullPasswordException nullPasswordException) {
+        return new ResponseEntity<>(nullPasswordException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     //Bean Validation Related Exceptions Handler
