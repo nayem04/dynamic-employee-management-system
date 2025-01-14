@@ -9,11 +9,11 @@ import com.dynamicemployeemanagementsystem.domain.dtos.DepartmentDto;
 import com.dynamicemployeemanagementsystem.domain.entities.Department;
 import com.dynamicemployeemanagementsystem.domain.mappers.DepartmentMapper;
 import com.dynamicemployeemanagementsystem.domain.repositories.DepartmentRepository;
-import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
-@Setter
+@Service
 public class DepartmentService implements BaseService<DepartmentDto> {
     private final DepartmentMapper departmentMapper;
     private final DepartmentRepository departmentRepository;
