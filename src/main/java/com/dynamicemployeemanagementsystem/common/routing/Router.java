@@ -10,4 +10,12 @@ public final class Router {
         public static final String UPDATE_DEPARTMENT = ROOT + "departments/{id}";
         public static final String DELETE_DEPARTMENT = ROOT + "departments/{id}";
     }
+
+    public static final class Role {
+        public static final String GET_ROLES = ROOT + "roles";
+        public static final String GET_ROLE = ROOT + "roles/{id}";
+        public static final String CREATE_ROLE = ROOT + "roles";
+        public static final String UPDATE_ROLE = ROOT + "roles/{id}";
+        public static final String DELETE_ROLE = ROOT + "roles/{id}";
+    }
 }
