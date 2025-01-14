@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
-    @Query("SELECT d FROM Department d WHERE (:query IS NULL OR d.name LIKE %:quer%) AND d.deleted = false")
+    @Query("SELECT d FROM Department d WHERE (:query IS NULL OR d.name LIKE %:query%) AND d.deleted = false")
     Page<Department> search(@Param("query") String query, Pageable pageable);
 
     @Query("SELECT d FROM Department d WHERE d.id = :id AND d.deleted = false")
