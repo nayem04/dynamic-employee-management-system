@@ -1,6 +1,5 @@
 package com.dynamicemployeemanagementsystem.domain.mappers;
 
-
 import com.dynamicemployeemanagementsystem.common.base.BaseMapper;
 import com.dynamicemployeemanagementsystem.domain.dtos.RoleDto;
 import com.dynamicemployeemanagementsystem.domain.entities.Role;
