@@ -18,4 +18,12 @@ public final class Router {
         public static final String UPDATE_ROLE = ROOT + "roles/{id}";
         public static final String DELETE_ROLE = ROOT + "roles/{id}";
     }
+
+    public static final class User {
+        public static final String GET_USERS = ROOT + "users";
+        public static final String GET_USER = ROOT + "users/{id}";
+        public static final String CREATE_USER = ROOT + "users";
+        public static final String UPDATE_USER = ROOT + "users/{id}";
+        public static final String DELETE_USER = ROOT + "users/{id}";
+    }
 }
