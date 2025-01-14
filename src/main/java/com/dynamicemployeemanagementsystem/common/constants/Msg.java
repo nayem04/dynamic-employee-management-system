@@ -3,6 +3,7 @@ package com.dynamicemployeemanagementsystem.common.constants;
 public final class Msg {
     public final static class Entity {
         public final static String DEPARTMENT = "Department";
+        public final static String ROLE = "Role";
     }
 
     public final static class Response {
