@@ -25,7 +25,7 @@ public class UserController implements BaseController<UserDto> {
     @Override
     public ResponseEntity<Page<UserDto>> search(@RequestParam(name = "query", defaultValue = "") String query,
                                                 @RequestParam(name = "page", defaultValue = "0") int page,
-                                                @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
+                                                @RequestParam(name = "page_size", defaultValue = "10") int pageSize,
                                                 @RequestParam(name = "direction", defaultValue = "DESC") Sort.Direction direction,
                                                 @RequestParam(name = "sorted_field_name", defaultValue = "id") String sortedFieldName,
                                                 @RequestParam(name = "pageable_limit", defaultValue = "true") Boolean pageableLimit) {
