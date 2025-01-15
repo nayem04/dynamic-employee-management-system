@@ -53,7 +53,7 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
-    public String delete(Long id, Boolean softDelete) throws Exception {
+    public String delete(Long id, Boolean softDelete) throws NotFoundException {
         Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         if (softDelete) {
             employee.setDeleted(true);
