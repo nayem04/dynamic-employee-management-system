@@ -23,12 +23,12 @@ public class UserController implements BaseController<UserDto> {
 
     @GetMapping(Router.User.GET_USERS)
     @Override
-    public ResponseEntity<Page<UserDto>> search(@RequestParam(value = "query", defaultValue = "") String query,
-                                                @RequestParam(value = "page", defaultValue = "0") int page,
-                                                @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                                @RequestParam(value = "direction", defaultValue = "DESC") Sort.Direction direction,
-                                                @RequestParam(value = "sorted_field_name", defaultValue = "id") String sortedFieldName,
-                                                @RequestParam(value = "pageable_limit", defaultValue = "true") Boolean pageableLimit) {
+    public ResponseEntity<Page<UserDto>> search(@RequestParam(name = "query", defaultValue = "") String query,
+                                                @RequestParam(name = "page", defaultValue = "0") int page,
+                                                @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
+                                                @RequestParam(name = "direction", defaultValue = "DESC") Sort.Direction direction,
+                                                @RequestParam(name = "sorted_field_name", defaultValue = "id") String sortedFieldName,
+                                                @RequestParam(name = "pageable_limit", defaultValue = "true") Boolean pageableLimit) {
         return ResponseEntity.ok(userService.search(query, page, pageSize, direction, sortedFieldName, pageableLimit));
     }
 
@@ -53,7 +53,7 @@ public class UserController implements BaseController<UserDto> {
     @DeleteMapping(Router.User.DELETE_USER)
     @Override
     public ResponseEntity<String> delete(@PathVariable Long id,
-                                         @RequestParam(value = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
+                                         @RequestParam(name = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
         return ResponseEntity.ok(userService.delete(id, softDelete));
     }
 }

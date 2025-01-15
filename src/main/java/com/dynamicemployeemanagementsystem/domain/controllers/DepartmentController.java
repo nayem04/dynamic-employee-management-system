@@ -51,7 +51,7 @@ public class DepartmentController implements BaseController<DepartmentDto> {
     @DeleteMapping(Router.Department.DELETE_DEPARTMENT)
     @Override
     public ResponseEntity<String> delete(@PathVariable Long id,
-                                         @RequestParam(value = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
+                                         @RequestParam(name = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
         return ResponseEntity.ok(departmentService.delete(id, softDelete));
     }
 }

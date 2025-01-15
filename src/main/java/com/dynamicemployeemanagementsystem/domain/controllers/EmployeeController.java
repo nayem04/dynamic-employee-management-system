@@ -51,7 +51,7 @@ public class EmployeeController implements BaseController<EmployeeDto> {
     @DeleteMapping(Router.Employee.DELETE_EMPLOYEE)
     @Override
     public ResponseEntity<String> delete(@PathVariable Long id,
-                                         @RequestParam(value = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
+                                         @RequestParam(name = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
         return ResponseEntity.ok(employeeService.delete(id, softDelete));
     }
 }
