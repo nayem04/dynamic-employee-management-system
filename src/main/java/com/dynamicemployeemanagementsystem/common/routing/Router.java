@@ -26,4 +26,12 @@ public final class Router {
         public static final String UPDATE_USER = ROOT + "users/{id}";
         public static final String DELETE_USER = ROOT + "users/{id}";
     }
+
+    public static final class Employee {
+        public static final String GET_EMPLOYEES = ROOT + "employees";
+        public static final String GET_EMPLOYEE = ROOT + "employees/{id}";
+        public static final String CREATE_EMPLOYEE = ROOT + "employees";
+        public static final String UPDATE_EMPLOYEE = ROOT + "employees/{id}";
+        public static final String DELETE_EMPLOYEE = ROOT + "employees/{id}";
+    }
 }
