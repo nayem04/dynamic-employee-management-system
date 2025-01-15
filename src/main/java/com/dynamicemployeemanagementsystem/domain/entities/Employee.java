@@ -1,12 +1,15 @@
 package com.dynamicemployeemanagementsystem.domain.entities;
 
 import com.dynamicemployeemanagementsystem.common.base.BaseEntity;
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import java.util.Date;
+import java.util.Map;
 
 @Entity
 @Table(name = "employees")
@@ -24,8 +27,12 @@ public class Employee extends BaseEntity {
     @Column(name = "salary", nullable = false)
     private double salary;
 
+    /*Hibernate needs a type handler for Map<String, Object>.
+    If you are using a JSON column (jsonb) in PostgreSQL,
+    you can use the @Type annotation with a library like Hibernate Types.*/
+    @Type(JsonType.class)
     @Column(name = "additional_attributes", columnDefinition = "jsonb")
-    private String additionalAttributes; // Store as JSONB
+    private Map<String, Object> additionalAttributes; // Store as JSONB
 
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)

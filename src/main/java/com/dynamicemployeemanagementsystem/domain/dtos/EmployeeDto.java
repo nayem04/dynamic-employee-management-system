@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -27,7 +28,7 @@ public class EmployeeDto extends BaseDto {
     private double salary;
 
     @JsonProperty(value = "additional_attributes")
-    private String additionalAttributes; // Store as JSONB
+    private Map<String, Object> additionalAttributes; // Store as JSONB
 
     @NotNull(message = "Department Id is required.")
     @JsonProperty(value = "department_id", required = true)

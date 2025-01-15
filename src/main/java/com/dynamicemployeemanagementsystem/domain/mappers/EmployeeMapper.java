@@ -27,7 +27,7 @@ public class EmployeeMapper implements BaseMapper<Employee, EmployeeDto> {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setId(employee.getId());
         employeeDto.setCreated(employee.getCreated());
-        employeeDto.setCreated(employee.getCreated());
+        employeeDto.setLastUpdated(employee.getLastUpdated());
         employeeDto.setDesignation(employee.getDesignation());
         employeeDto.setDateOfJoining(employee.getDateOfJoining());
         employeeDto.setSalary(employee.getSalary());
