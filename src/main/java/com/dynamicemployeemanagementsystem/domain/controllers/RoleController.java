@@ -50,7 +50,8 @@ public class RoleController implements BaseController<RoleDto> {
 
     @DeleteMapping(Router.Role.DELETE_ROLE)
     @Override
-    public ResponseEntity<String> delete(@PathVariable Long id, @RequestParam(value = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
+    public ResponseEntity<String> delete(@PathVariable Long id,
+                                         @RequestParam(value = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
         return ResponseEntity.ok(roleService.delete(id, softDelete));
     }
 }
