@@ -13,12 +13,12 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query("SELECT e FROM Employee e WHERE (:query IS NULL OR e.user.firstName LIKE %:query% " +
-            "OR e.user.lastName LIKE %:query%) AND e.deleted = false AND e.user.deleted = false")
+            "OR e.user.lastName LIKE %:query%) AND e.deleted = false")
     Page<Employee> search(@Param("query") String query, Pageable pageable);
 
-    @Query("SELECT e FROM Employee e WHERE e.id = :id AND e.deleted = false AND e.user.deleted = false")
+    @Query("SELECT e FROM Employee e WHERE e.id = :id AND e.deleted = false")
     Optional<Employee> find(@Param("id") Long id);
 
-    @Query("SELECT e FROM Employee e WHERE e.deleted = false AND e.user.deleted = false")
+    @Query("SELECT e FROM Employee e WHERE e.deleted = false")
     Long total();
 }
