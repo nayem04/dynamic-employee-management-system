@@ -2,10 +2,7 @@ package com.dynamicemployeemanagementsystem.domain.dtos;
 
 import com.dynamicemployeemanagementsystem.common.base.BaseDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -44,15 +41,19 @@ public class UserDto extends BaseDto {
     @JsonProperty(value = "role_ids")
     private List<Long> roleIds;
 
+    @NotNull(message = "Account Non Expired is required.")
     @JsonProperty(value = "account_non_expired", required = true, access = JsonProperty.Access.READ_ONLY)
     private Boolean accountNonExpired = true;
 
+    @NotNull(message = "Account Non Locked is required.")
     @JsonProperty(value = "account_non_locked", required = true, access = JsonProperty.Access.READ_ONLY)
     private Boolean accountNonLocked = true;
 
+    @NotNull(message = "Credentials Non Expired is required.")
     @JsonProperty(value = "credentials_non_expired", required = true, access = JsonProperty.Access.READ_ONLY)
     private Boolean credentialsNonExpired = true;
 
+    @NotNull(message = "Enabled is required.")
     @JsonProperty(value = "enabled", required = true, access = JsonProperty.Access.READ_ONLY)
     private Boolean enabled = true;
 }
