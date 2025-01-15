@@ -46,7 +46,7 @@ public class UserMapper implements BaseMapper<User, UserDto> {
     }
 
     @Override
-    public User map(User user, UserDto userDto) throws NullPasswordException, NotFoundException, UserAlreadyExistsException {
+    public User map(User user, UserDto userDto) throws NotFoundException, NullPasswordException, UserAlreadyExistsException {
         if (user == null) {
             if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
                 throw ExceptionUtil.getUserAlreadyExistsException("Username", userDto.getUsername());
