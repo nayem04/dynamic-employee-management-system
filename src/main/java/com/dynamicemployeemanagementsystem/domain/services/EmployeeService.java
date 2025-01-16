@@ -9,6 +9,9 @@ import com.dynamicemployeemanagementsystem.domain.dtos.EmployeeDto;
 import com.dynamicemployeemanagementsystem.domain.entities.Employee;
 import com.dynamicemployeemanagementsystem.domain.mappers.EmployeeMapper;
 import com.dynamicemployeemanagementsystem.domain.repositories.EmployeeRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -32,8 +35,9 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
+    @Cacheable(value = "employee", key = "#id", unless = "#result == null")
     public EmployeeDto find(Long id) throws NotFoundException {
-        Employee employee = employeeRepository.findById(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
+        Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         return employeeMapper.map(employee);
     }
 
@@ -45,6 +49,7 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
+    @CachePut(value = "employee", key = "#id")
     public EmployeeDto update(Long id, EmployeeDto employeeDto) throws NotFoundException {
         Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         employee = employeeMapper.map(employee, employeeDto);
@@ -53,6 +58,7 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
+    @CacheEvict(value = "employee", key = "#id")
     public String delete(Long id, Boolean softDelete) throws NotFoundException {
         Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         if (softDelete) {
