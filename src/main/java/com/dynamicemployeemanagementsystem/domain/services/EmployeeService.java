@@ -35,7 +35,7 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
-    @Cacheable(value = "employee", key = "#id", unless = "#result == null")
+    @Cacheable(value = Msg.Entity.EMPLOYEE, key = "#id", unless = "#result == null")
     public EmployeeDto find(Long id) throws NotFoundException {
         Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         return employeeMapper.map(employee);
@@ -49,7 +49,7 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
-    @CachePut(value = "employee", key = "#id")
+    @CachePut(value = Msg.Entity.EMPLOYEE, key = "#id")
     public EmployeeDto update(Long id, EmployeeDto employeeDto) throws NotFoundException {
         Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         employee = employeeMapper.map(employee, employeeDto);
@@ -58,7 +58,7 @@ public class EmployeeService implements BaseService<EmployeeDto> {
     }
 
     @Override
-    @CacheEvict(value = "employee", key = "#id")
+    @CacheEvict(value = Msg.Entity.EMPLOYEE, key = "#id")
     public String delete(Long id, Boolean softDelete) throws NotFoundException {
         Employee employee = employeeRepository.find(id).orElseThrow(() -> ExceptionUtil.getNotFoundException(Msg.Entity.EMPLOYEE, id));
         if (softDelete) {
@@ -68,5 +68,10 @@ public class EmployeeService implements BaseService<EmployeeDto> {
             employeeRepository.delete(employee);
         }
         return Msg.Entity.EMPLOYEE + Msg.Response.DELETE;
+    }
+
+    @CacheEvict(value = Msg.Entity.EMPLOYEE, allEntries = true)
+    public String deleteEmployeesCaches() {
+        return Msg.Entity.EMPLOYEE + Msg.Response.CACHES + Msg.Response.CLEAR;
     }
 }

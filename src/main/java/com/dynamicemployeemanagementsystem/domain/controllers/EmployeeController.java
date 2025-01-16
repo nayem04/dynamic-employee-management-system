@@ -54,4 +54,9 @@ public class EmployeeController implements BaseController<EmployeeDto> {
                                          @RequestParam(name = "soft_delete", defaultValue = "true") Boolean softDelete) throws NotFoundException {
         return ResponseEntity.ok(employeeService.delete(id, softDelete));
     }
+
+    @DeleteMapping(Router.Employee.DELETE_EMPLOYEES_CACHES)
+    public ResponseEntity<String> deleteEmployeesCaches() {
+        return ResponseEntity.ok(employeeService.deleteEmployeesCaches());
+    }
 }

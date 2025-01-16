@@ -18,5 +18,8 @@ public final class Msg {
         public final static String CREATE = " Created Successfully.";
         public final static String UPDATE = " Updated Successfully.";
         public final static String DELETE = " Deleted Successfully.";
+        public final static String CLEAR = " Cleared Successfully.";
+        public final static String CACHE = " Cache";
+        public final static String CACHES = "s Caches";
     }
 }

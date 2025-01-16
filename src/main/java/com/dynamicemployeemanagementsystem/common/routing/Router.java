@@ -33,5 +33,6 @@ public final class Router {
         public static final String CREATE_EMPLOYEE = ROOT + "employees";
         public static final String UPDATE_EMPLOYEE = ROOT + "employees/{id}";
         public static final String DELETE_EMPLOYEE = ROOT + "employees/{id}";
+        public static final String DELETE_EMPLOYEES_CACHES = ROOT + "employees/caches";
     }
 }
