@@ -13,10 +13,12 @@ import com.dynamicemployeemanagementsystem.domain.mappers.UserMapper;
 import com.dynamicemployeemanagementsystem.domain.repositories.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements BaseService<UserDto> {
+public class UserService implements BaseService<UserDto>, UserDetailsService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
 
@@ -64,5 +66,11 @@ public class UserService implements BaseService<UserDto> {
             userRepository.delete(user);
         }
         return Msg.Entity.USER + Msg.Response.DELETE;
+    }
+
+    @Override
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Could not found user with username: " + username));
     }
 }
