@@ -12,7 +12,7 @@ public final class ExceptionUtil {
     }
 
     public static EnumNotFoundException getEnumNotFoundException(String enumName) {
-        return new EnumNotFoundException((enumName + " enum could not be found!"));
+        return new EnumNotFoundException((enumName + " enum could not be found."));
     }
 
     public static AlreadyExistsException getAlreadyExistsException(String name) {
@@ -32,6 +32,10 @@ public final class ExceptionUtil {
     }
 
     public static NullPasswordException getNullPasswordException() {
-        return new NullPasswordException("Password could not be empty!");
+        return new NullPasswordException("Password could not be empty.");
+    }
+
+    public static InvalidCredentialException getInvalidCredentialException(String username, String password) {
+        return new InvalidCredentialException("Username: " + username + " or Password: " + password + " is invalid.");
     }
 }
