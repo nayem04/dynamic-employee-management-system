@@ -42,6 +42,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(nullPasswordException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidCredentialException.class)
+    public ResponseEntity<String> handleInvalidCredentialException(InvalidCredentialException invalidCredentialException) {
+        return new ResponseEntity<>(invalidCredentialException.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     //Bean Validation Related Exceptions Handler
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {

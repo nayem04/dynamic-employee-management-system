@@ -1,6 +1,6 @@
 package com.dynamicemployeemanagementsystem.common.exceptions;
 
-public class InvalidCredentialException extends RuntimeException {
+public class InvalidCredentialException extends Exception {
     public InvalidCredentialException() {
     }
 
