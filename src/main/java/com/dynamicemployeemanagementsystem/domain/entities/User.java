@@ -5,7 +5,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -13,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -56,4 +61,34 @@ public class User extends BaseEntity {
 
     @Column(name = "enabled", nullable = false)
     private Boolean enabled = true;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+        for (Role role : roles) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
+            grantedAuthorityList.add(grantedAuthority);
+        }
+        return grantedAuthorityList;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }
