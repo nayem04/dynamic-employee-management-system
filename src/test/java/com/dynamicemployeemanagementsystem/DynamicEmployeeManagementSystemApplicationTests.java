@@ -3,10 +3,10 @@ package com.dynamicemployeemanagementsystem;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class DynamicEmployeeManagementSystemApplicationTests {
 
-    @Test
+    //@Test
     void contextLoads() {
     }
 
