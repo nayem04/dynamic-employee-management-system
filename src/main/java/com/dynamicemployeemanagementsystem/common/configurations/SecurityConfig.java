@@ -60,7 +60,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/api/employees/*").hasAnyRole("ADMIN", "EMPLOYEE")
                                 .requestMatchers(HttpMethod.POST, Router.LOGIN).permitAll()
                                 .anyRequest().hasRole("ADMIN"))
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())   // enable HTTP Basic Authentication with default configurations.
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
